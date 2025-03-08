@@ -19,7 +19,7 @@ contract OjoPTFeed is AggregatorV3Interface {
         FEED_1 = AggregatorV2V3Interface(_FEED_1);
         FEED_2 = AggregatorV2V3Interface(_FEED_2);
         require(FEED_1.decimals() == FEED_2.decimals(), "FEED_1 decimals not equal to FEED_2 decimals");
-        feedDescription = string(abi.encodePacked("Ojo PT Feed", FEED_1.description()));
+        feedDescription = string(abi.encodePacked("Ojo PT Feed ", FEED_1.description()));
     }
 
     function decimals() external view override returns (uint8) {
