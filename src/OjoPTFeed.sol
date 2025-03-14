@@ -42,6 +42,12 @@ contract OjoPTFeed is AggregatorV3Interface, Initializable {
         return DEFAULT_VERSION;
     }
 
+    /**
+     * @notice Returns data for a specific round ID
+     * @dev Note: This function returns the roundId from whichever oracle provided the minimum price.
+     * This means roundIds may not be monotonically increasing when switching between oracles,
+     * which could break protocols that rely on roundId being non-decreasing.
+     */
     function getRoundData(
         uint80 _roundId
     )
@@ -57,6 +63,12 @@ contract OjoPTFeed is AggregatorV3Interface, Initializable {
         return (roundId, answer, startedAt, updatedAt, answeredInRound);
     }
 
+    /**
+     * @notice Returns the latest round data
+     * @dev Note: This function returns the roundId from whichever oracle provided the minimum price.
+     * This means roundIds may not be monotonically increasing when switching between oracles,
+     * which could break protocols that rely on roundId being non-decreasing.
+     */
     function latestRoundData()
         public
         view
